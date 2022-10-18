@@ -1,6 +1,5 @@
-function getTitle(title){
-  return title;
-}
+const getTitle = (title) => (title);
+
 
 const list = [
   {
@@ -23,7 +22,7 @@ const list = [
   },
 ];
 
-function App() {
+const App = () => {
   //you can do something here 
   const welcome = {
     greeting: "Hey",
@@ -78,6 +77,9 @@ function App() {
 
       <hr/>
 
+      {/* creating an instance of List component */}
+      <List/>
+      {/* creating another instance of List component */}
       <List/>
     </div>
     
@@ -85,9 +87,8 @@ function App() {
   );
 }
 
-
-function List() {
-  return(
+//definition of List component 
+const List = () => (
     <ul>
       {list.map(function(item) {
         return(
@@ -103,18 +104,15 @@ function List() {
         )
       })}
     </ul>
-  )
-}
+  );
 
-function Search() {
-  return(
+const Search = () => (
     <div>
       <label htmlFor="search">Search: </label>
       <input id="search" type="text"></input>
     </div>
     
 
-  )
-}
+  );
 
 export default App;
