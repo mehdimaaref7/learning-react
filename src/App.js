@@ -26,6 +26,7 @@ const list = [
 
 
 const App = () => {
+
   const stories = [
     {
       title: 'React',
@@ -46,17 +47,30 @@ const App = () => {
       objectID: 1, 
     },
   ];
+
+  //A 
+  const handleSearch = (event) => {
+    //C
+    console.log(event.target.value);
+  }
   console.log('App renders');
 
   //you can do something here 
   const welcome = {
-    greeting: "Hey",
+    greeting: "Hello",
     title: "React",
   }
   return (
     <div>
       <h1> {welcome.greeting} {welcome.title} {getTitle('Hacker Stories')} </h1>
+
+      {/* //B */}
+      <Search onSearch={handleSearch}/>
+      
+      <hr/>
+      
       <Search/>
+      
       <hr />
       <ul>
         {list.map(function (item){
@@ -167,13 +181,16 @@ const Item = (props) => (
   </li>
 );
 
-const Search = () => {
+const Search = (props) => {
 
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleChange = (event) => {
     console.log(e => (Error)); // Good code reflex in development to catch errors
     setSearchTerm(event.target.value);
+
+    //B 
+    props.onSearch(event);
   }
 
 
