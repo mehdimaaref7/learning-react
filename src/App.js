@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 const getTitle = (title) => (title);
 
 
@@ -44,6 +46,7 @@ const App = () => {
       objectID: 1, 
     },
   ];
+  console.log('App renders');
 
   //you can do something here 
   const welcome = {
@@ -103,11 +106,11 @@ const App = () => {
       {/* <List list={stories}/> */}
       {/* creating another instance of List component */}
       <List />
-      <List_props list={stories}/>
+      <List_props list_props={stories}/>
       <List2 list={stories}/>
       
     </div>
-    
+  
        
   );
 }
@@ -115,7 +118,7 @@ const App = () => {
 //definition of List component 
 const List_props = (props) => (
     <ul>
-      {props.list.map((item) => (
+      {props.list_props.map((item) => (
           <li key={item.objectID}>
             <p>
                 <a href={item.url}>{item.title}</a>
@@ -146,6 +149,7 @@ const List_props = (props) => (
   
   
 const List2 = (props) => (
+  
   <ul>
     {props.list.map((item) => (
       <Item key={item.objectID} item={item} />
@@ -164,9 +168,15 @@ const Item = (props) => (
 );
 
 const Search = () => {
+
+  const [searchTerm, setSearchTerm] = useState('');
+
   const handleChange = (event) => {
-    console.log(event.target.value);
+    console.log(e => (Error)); // Good code reflex in development to catch errors
+    setSearchTerm(event.target.value);
   }
+
+
 
   return(
     <div>
@@ -177,6 +187,9 @@ const Search = () => {
         type="text" 
         onChange={handleChange}
       />
+      <p> 
+        Searching for <strong>{searchTerm}</strong> .
+      </p>
     </div>
     );
   };
