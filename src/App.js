@@ -48,12 +48,20 @@ const App = () => {
     },
   ];
 
+  const [searchTerm, setSearchTerm] = useState('');
+
   //A 
   const handleSearch = (event) => {
     //C
     console.log(event.target.value);
+    setSearchTerm(event.target.value);
   }
-  console.log('App renders');
+
+  const searchedStories = stories.filter((story) => 
+    story.title.toLowerCase().includes(searchTerm.toLowerCase()) 
+  );
+
+  //console.log('App renders');
 
   //you can do something here 
   const welcome = {
@@ -71,7 +79,8 @@ const App = () => {
       
       <Search/>
       
-      <hr />
+      
+
       <ul>
         {list.map(function (item){
           return <li>{item.title}</li>
@@ -123,7 +132,18 @@ const App = () => {
       <List_props list_props={stories}/>
       <List2 list={stories}/>
       
+      <h1>My Hacker Stories (lifting state up)</h1>
+
+      <hr />
+      <Search3 onSearch={handleSearch}/>
+
+      <hr/>
+
+      <List2 list={searchedStories}/>
+
+
     </div>
+    
   
        
   );
@@ -208,7 +228,19 @@ const Search = (props) => {
         Searching for <strong>{searchTerm}</strong> .
       </p>
     </div>
+
+
+
+
+
     );
   };
+
+  const Search3 = (props) => (
+    <div>
+      <label htmlFor="search"> Search: </label>
+      <input id="search" type="text" onChange={props.onSearch}></input>
+    </div>
+  )
 
 export default App;
