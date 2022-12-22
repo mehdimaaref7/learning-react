@@ -48,7 +48,7 @@ const App = () => {
     },
   ];
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('React');
 
   //A 
   const handleSearch = (event) => {
@@ -129,7 +129,7 @@ const App = () => {
       {/* <List list={stories}/> */}
       {/* creating another instance of List component */}
       <List />
-      <List_props list_props={stories}/>
+      <LIST_PROPS list_props={stories}/>
       <List2 list={stories}/>
       
       <h1>My Hacker Stories (lifting state up)</h1>
@@ -141,6 +141,10 @@ const App = () => {
 
       <List2 list={searchedStories}/>
 
+      <hr/>
+
+      <Search4 search={searchTerm} onSearch={handleSearch}/>
+
 
     </div>
     
@@ -150,7 +154,7 @@ const App = () => {
 }
 
 //definition of List component 
-const List_props = (props) => (
+const LIST_PROPS = (props) => (
     <ul>
       {props.list_props.map((item) => (
           <li key={item.objectID}>
@@ -242,5 +246,17 @@ const Search = (props) => {
       <input id="search" type="text" onChange={props.onSearch}></input>
     </div>
   )
+
+  const Search4 = (props) => (
+    <div>
+      <label htmlFor="search"> Search: </label>
+      <input
+        id="search"
+        type="text"
+        value={props.search}
+        onChange={props.onSearch}
+      />
+    </div>
+  );
 
 export default App;
