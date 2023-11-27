@@ -143,7 +143,18 @@ const App = () => {
 
       <hr/>
 
+      <p> Desctructuring objects </p>
+
+
       <Search4 search={searchTerm} onSearch={handleSearch}/>
+
+      <List3 list={searchedStories}></List3>
+
+      <hr/>
+
+
+
+      <Search5  search={searchTerm} onSearch={handleSearch} />
 
 
     </div>
@@ -194,6 +205,28 @@ const List2 = (props) => (
 
     ))}
   </ul>
+);
+
+const List3 = ({list}) => (
+  
+  <ul>
+    {list.map((item) => (
+      <Item2 key={item.objectID} item={item} />
+
+    ))}
+  </ul>
+);
+
+const Item2 = ({item}) => (
+  <li>
+    <span>
+      <a href={item.url}> {item.title}</a>
+    </span>
+    <span>{item.author}</span>
+    <span>{item.num_comments}</span>
+    <span>{item.points}</span>
+
+  </li>
 );
 
 const Item = (props) => (
@@ -255,6 +288,18 @@ const Search = (props) => {
         type="text"
         value={props.search}
         onChange={props.onSearch}
+      />
+    </div>
+  );
+
+  const Search5 = ({search, onSearch}) => (
+    <div>
+      <label htmlFor="search"> Search: </label>
+      <input
+        id="search"
+        type="text"
+        value={search}
+        onChange={onSearch}
       />
     </div>
   );
